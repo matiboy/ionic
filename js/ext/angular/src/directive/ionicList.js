@@ -46,7 +46,8 @@ angular.module('ionic.ui.list', ['ngAnimate'])
       });
 
       // Set this item's class, first from the item directive attr, and then the list attr if item not set
-      $scope.itemClass = $scope.itemType || $parentScope.itemType;
+      var getter = $parse( $scope.itemClass );
+      $scope.parsedClass = angular.bind( $scope, getter, $scope.$parent );
 
       // Decide if this item can do stuff, and follow a certain priority 
       // depending on where the value comes from
